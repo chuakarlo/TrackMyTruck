@@ -1,0 +1,303 @@
+@charset "UTF-8";
+
+/* 全体に関わるスタイル
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
+body {
+	font-size: 12px;
+}
+
+/* ページタイトル */
+h1 {
+	font-size: 15px;
+	margin: 10px 0px;
+	width: 100%;
+}
+
+h2 {
+	font-size: 14px;
+	margin: 5px;
+	padding: 5px;
+}
+
+h3 {
+	font-size: 15px;
+	margin: 5px;
+	padding: 5px;
+}
+
+th {
+	border: 1px #2b2b2b solid;
+	padding: 3px 10px 3px 10px;
+	text-align: center;
+}
+
+td {
+	border: 1px #2b2b2b solid;
+	padding: 3px 10px 3px 10px;
+	text-align: left;
+}
+
+#mainContainer {
+	width: 100%;
+	height: 700px;
+}
+
+#menuArea {
+	width: 180px;
+	float: left;
+	height: inherit;
+}
+
+#contentArea {
+	position: absolute;
+	left: 190px;
+	padding-left: 10px;
+	width: 890px;
+	height: inherit;
+}
+
+/* Teedaで割り振られたidに対するCSS
+ −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
+#allMessages li {
+	color: #ff0000;
+}
+
+.onTeedaError {
+	 background-color: #FFCCCC;
+}
+
+/* DIVタグのクラス
+ * 各画面で使用するテーブルを囲む
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
+div.main {
+	padding: 5px;
+}
+
+/* ボタンエリア*/
+.buttonArea {
+	width: 90%;
+	padding: 20px 0px 5px 10px;
+	text-align: right;
+}
+
+/* 各画面で使用するテーブルのスタイル
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
+/* 検索条件用テーブル */
+.searchTable {
+	width: 980px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	margin: 5px 5px 5px 20px;
+}
+
+.searchTable th {
+	width: 20%;
+	text-align: center;
+	border-right: 0px;
+	background-color: #ffd700;
+	font-size: 12px;
+}
+
+.searchTable td {
+	width: 80%;
+}
+
+/* 検索結果 */
+.listTable {
+	width: 980px;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	margin: 5px 5px 5px 20px;
+}
+
+.listTable th {
+	background-color: #ffd700;
+	font-size: 12px;
+}
+
+/* 詳細内容、訂正、新規、確認、完了 */
+.dataTable {
+	width: 85%;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	margin: 5px 5px 5px 20px;
+}
+
+.dataTable th {
+	width: 20%;
+	background-color: #ffd700;
+	font-size: 12px;
+}
+
+.dataTable td {
+	width: 30%;
+}
+
+/* 行揃えの位置指定 */
+.alignLeft {
+	text-align: left;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.alignCenter {
+	text-align: center;
+}
+
+/* INPUTタグのスタイル
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
+/* 部店コード */
+input.branchCd {
+	width: 30px;
+}
+
+/* 顧客コード */
+input.clientCd {
+	width: 70px;
+}
+
+input.clientNm {
+	width: 150px;
+}
+/* 日付 */
+input.date {
+	width: 100px;
+}
+/* 時刻 */
+input.time {
+	width: 70px;
+}
+/* 銘柄コード */
+input.dscrCd {
+	width: 100px;
+}
+/* 銘柄名 */
+input.dscrNm {
+	width: 300px;
+}
+/* 注文No */
+input.orderNo {
+	width: 100px;
+}
+
+input.edit1 {
+	width: 10px;
+}
+
+input.edit2 {
+	width: 20px;
+}
+
+input.edit3 {
+	width: 30px;
+}
+
+input.edit4 {
+	width: 40px;
+}
+
+input.edit5 {
+	width: 50px;
+}
+
+input.edit6 {
+	width: 60px;
+}
+
+input.edit7 {
+	width: 70px;
+}
+
+input.edit8 {
+	width: 80px;
+}
+
+input.edit9 {
+	width: 90px;
+}
+
+input.edit10 {
+	width: 100px;
+}
+
+input.edit11 {
+	width: 110px;
+}
+
+input.edit12 {
+	width: 120px;
+}
+
+input.edit13 {
+	width: 130px;
+}
+
+input.edit14 {
+	width: 140px;
+}
+
+input.edit15 {
+	width: 150px;
+}
+
+input.edit16 {
+	width: 160px;
+}
+
+input.edit17 {
+	width: 170px;
+}
+
+input.edit18 {
+	width: 180px;
+}
+
+input.edit19 {
+	width: 190px;
+}
+
+input.edit20 {
+	width: 200px;
+}
+
+input.edit21 {
+	width: 210px;
+}
+
+input.edit22 {
+	width: 220px;
+}
+
+input.edit23 {
+	width: 230px;
+}
+
+input.edit24 {
+	width: 240px;
+}
+
+input.edit25 {
+	width: 250px;
+}
+
+input.edit26 {
+	width: 260px;
+}
+
+input.edit27 {
+	width: 270px;
+}
+
+input.edit28 {
+	width: 280px;
+}
+
+input.edit29 {
+	width: 290px;
+}
+
+input.edit30 {
+	width: 300px;
+}

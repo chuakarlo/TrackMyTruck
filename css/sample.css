@@ -1,0 +1,324 @@
+﻿@charset "UTF-8";
+@import url("bootstrap.css");
+@import url("table-responsive.css");
+
+body {
+	font-size: 12px;
+}
+
+th {
+ text-align: center;
+}
+
+th.success {
+	width: 30%
+}
+
+td.success {
+ text-align: center;
+ font-weight: bold;
+}
+
+tr.success {
+	text-align: center;
+}
+td {
+ min-height: 45px;
+ line-height: 45px;
+}
+
+/* bootstrap・一覧の二段表示用ストライプ */
+.table-striped2> tbody > tr:nth-child(4n)> td,
+.table-striped2> tbody > tr:nth-child(4n-1) > td {
+  background-color: #f9f9f9;
+ }
+
+/* bootstrap・一覧の三段表示用ストライプ */
+.table-striped3> tbody > tr:nth-child(6n)> td,
+.table-striped3> tbody > tr:nth-child(6n-1)> td,
+.table-striped3> tbody > tr:nth-child(6n-2) > td {
+  background-color: #f9f9f9;
+ }
+.table-hover2 > tbody > tr:nth-child(4n):hover > td,
+.table-hover2 > tbody > tr:nth-child(4n-1):hover > td {
+  background-color: #f5f5f5;
+}
+
+/* bootstrapのスタイルを上書き&追加 */
+.td input {
+ margin: auto;
+ text-align: center;
+}
+
+.table > thead > tr > th {
+  vertical-align: middle;
+  border-bottom: 2px solid #ddd;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+}
+
+.input-sm {
+	width: 600px;
+  height: 26px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 3px;
+}
+
+select.input-sm {
+  height: 30px;
+  line-height: 30px;
+  width: auto;
+  }
+
+.radio {
+  display: block;
+  min-height: 10px;
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.checkbox {
+  display: block;
+  min-height: 10px;
+  padding-left: 20px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+/* other */
+.alignLeft {
+	text-align: left;
+}
+
+.alignCenter {
+	text-align: center;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.buttonArea {
+	text-align: right;
+	padding-bottom: 20px;
+}
+
+.dateInputL {
+	float: left;
+	margin-right: 10px;
+}
+
+.dateInputC {
+	float: left;
+	padding-top: 5px;
+}
+
+.dateInputR {
+	float: left;
+	margin-left: 10px;
+}
+
+.dscrCdInputL {
+	width: 100px;
+	float: left;
+	margin-right: 10px;
+}
+
+.dscrCdInputR {
+	float: left;
+	vertical-align: middle;
+}
+
+/* INPUTタグのスタイル==========================================*/
+/* 部店コード */
+input.branchCd {
+	width: 50px;
+	text-align: right;
+}
+
+/* 顧客・ユーザコード */
+input.clientCd {
+	width: 80px;
+	text-align: right;
+}
+
+/* 顧客・ユーザ名 */
+input.clientNm {
+	width: 150px;
+}
+/* 日付 */
+input.date {
+	width: 100px;
+	text-align: right;
+}
+/* 時刻 */
+input.time {
+	width: 70px;
+	text-align: right;
+}
+/* 銘柄コード */
+input.dscrCd {
+	width: 100px;
+}
+/* 銘柄名 */
+input.dscrNm {
+	width: 400px;
+}
+/* 注文No */
+input.orderNo {
+	width: 100px;
+	text-align: right;
+}
+
+input.edit1 {
+	width: 10px;
+}
+
+input.edit2 {
+	width: 20px;
+}
+
+input.edit3 {
+	width: 30px;
+}
+
+input.edit4 {
+	width: 40px;
+}
+
+input.edit5 {
+	width: 50px;
+}
+
+input.edit6 {
+	width: 60px;
+}
+
+input.edit7 {
+	width: 70px;
+}
+
+input.edit8 {
+	width: 80px;
+}
+
+input.edit9 {
+	width: 90px;
+}
+
+input.edit10 {
+	width: 100px;
+}
+
+select.edit11,
+input.edit11 {
+	width: 110px;
+}
+
+input.edit12 {
+	width: 120px;
+}
+
+input.edit13 {
+	width: 130px;
+}
+
+input.edit14 {
+	width: 140px;
+}
+
+input.edit15 {
+	width: 150px;
+}
+
+input.edit16 {
+	width: 160px;
+}
+
+input.edit17 {
+	width: 170px;
+}
+
+input.edit18 {
+	width: 180px;
+}
+
+input.edit19 {
+	width: 190px;
+}
+
+input.edit20 {
+	width: 200px;
+}
+
+input.edit21 {
+	width: 210px;
+}
+
+input.edit22 {
+	width: 220px;
+}
+
+input.edit23 {
+	width: 230px;
+}
+
+input.edit24 {
+	width: 240px;
+}
+
+input.edit25 {
+	width: 250px;
+}
+
+input.edit26 {
+	width: 260px;
+}
+
+input.edit27 {
+	width: 270px;
+}
+
+input.edit28 {
+	width: 280px;
+}
+
+input.edit29 {
+	width: 290px;
+}
+
+input.edit30 {
+	width: 300px;
+}
+
+input.edit35 {
+	width: 350px;
+}
+
+input.edit50 {
+	width: 500px;
+
+input.edit60 {
+	width: 600px;
+}
+
+input.edit70 {
+	width: 700px;
+}
+
+input.edit100 {
+	width: 1000px;
+}
