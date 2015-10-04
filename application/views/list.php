@@ -117,6 +117,18 @@
 				</div>
 			</div><!-- class="row" -->
 		</form>
+		
+		<?php
+			if (null != $message):
+		?>
+		<div class="row">
+			<div class="col-md-12 alert <?= $alert ?>" style="margin-top:20px;">
+				<p><?= $message ?></p>
+			</div>
+		</div>
+		<?php
+			endif;
+		?>
 			
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -125,34 +137,39 @@
 			</div>
 			
 			<?php
-				if(is_array($truckData) && count($truckData) ) {
+				if(is_array($truckData) && count($truckData) ):
 			?>
 			<div class="row">
 				<div class="col-md-12 form-inline" style="margin-top:20px">
 					<table class="table table-bordered table-striped table-hover">
 						<thead>
 							<tr class="success">
-								<th id="lbl-drNum" class="text-center">DR No</th>
-								<th id="lbl-truckNum" class="text-center">Truck Plate No</th>
-								<th id="lbl-commodity" class="text-center">Load/Commodity</th>
-								<th id="lbl-destination" class="text-center">Destination</th>
-								<th id="lbl-soldTo" class="text-center">Sold to</th>
-								<th id="lbl-volume" class="text-center">Volume</th>
-								<th id="lbl-driver" class="text-center">Driver</th>
-								<th id="lbl-remarks" class="text-center">Remarks</th>
-								<th></th>
-								<th></th>
+								<th id="lbl-drNum" class="text-center" rowspan="2" style="vertical-align:middle">DR No</th>
+								<th id="lbl-truckNum" class="text-center" rowspan="2" style="vertical-align:middle">Truck Plate No</th>
+								<th id="lbl-commodity" class="text-center" rowspan="2" style="vertical-align:middle">Load/Commodity</th>
+								<th id="lbl-destination" class="text-center" colspan="2">Destination</th>
+								<th id="lbl-soldTo" class="text-center" rowspan="2" style="vertical-align:middle">Sold to</th>
+								<th id="lbl-volume" class="text-center" rowspan="2" style="vertical-align:middle">Volume</th>
+								<th id="lbl-driver" class="text-center" rowspan="2" style="vertical-align:middle">Driver</th>
+								<th id="lbl-remarks" class="text-center" rowspan="2" style="vertical-align:middle">Remarks</th>
+								<th rowspan="2"></th>
+								<th rowspan="2"></th>
+							</tr>
+							<tr class="success">
+								<th id="lbl-from" class="text-center">From</th>
+								<th id="lbl-to" class="text-center">To</th>
 							</tr>
 						</thead>
 						<tbody>
 						<?php
-							foreach($truckData as $data) {
+							foreach($truckData as $data):
 						?>
 							<tr class="text-center">
 								<td><?= $data->DR_NUM; ?></td>
 								<td><?= $data->TRUCK_NUM; ?></td>
 								<td><?= $data->COMMODITY; ?></td>
 								<td><?= $data->DEST_FROM; ?></td>
+								<td><?= $data->DEST_TO; ?></td>
 								<td><?= $data->SOLD_TO; ?></td>
 								<td><?= $data->VOLUME; ?></td>
 								<td><?= $data->DRIVER; ?></td>
@@ -161,14 +178,14 @@
 								<td><a onclick="confirmDelete(<?= $data->DR_NUM; ?>);">Delete</td>
 							</tr>     
 						<?php 
-								}
+							endforeach;
 						?> 
 						</tbody>
 					</table>
 				</div><!-- col-md-12 -->
 			</div><!-- class="row" -->
 			<?php
-				}
+				endif;
 			?>
 	
 			<div class="row">
