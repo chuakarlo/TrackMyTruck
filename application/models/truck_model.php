@@ -32,14 +32,95 @@ class Truck_model extends CI_Model {
 			"REMARKS"		=> $remarks
 		);
 		$this->db->insert("tbl_truck", $truck);
+		
+		$this->db->where("DR_NUM", $drNum);
+		$query = $this->db->get("tbl_dr_num");
+		
+		if ($query->result()):
+			$this->db->where("DR_NUM", $drNum);
+			$this->db->update("tbl_dr_num", array("IS_USED" => 1));
+		endif;
+		
 		$this->db->trans_complete();
 		
 		return $this->db->trans_status();
 	}
 	
-	function update($drNum) {
-		$this->db->trans_start();
+	function getDR() {
+		$this->db->where("IS_USED", 0);
+		$query = $this->db->get("tbl_dr_num");
 		
+		if ($query->result()):
+			return $query->row()->DR_NUM;
+		endif;
+		
+		$this->db->select("DR_NUM");
+		$this->db->order_by("TRUCK_ID", "DESC");
+		$this->db->limit(1);
+		$query = $this->db->get("tbl_truck");
+		$num = $query->row()->DR_NUM + 1;
+		
+		$this->db->where("DR_NUM", $num);
+		$query = $this->db->get("tbl_truck");
+		
+		if ($query->result()):
+			$this->db->select("MAX(DR_NUM) as DR_NUM");
+			$query = $this->db->get("tbl_truck");
+			
+			return $query->row()->DR_NUM + 1;
+		else:
+			return $num;
+		endif;
+	}
+	
+	function updateDR($drNum) {
+		$this->db->where("DR_NUM", $drNum);
+		$query = $this->db->get("tbl_dr_num");
+		
+		if($query->result()):
+			return false;
+		endif;
+		
+		$this->db->where("DR_NUM", $drNum);
+		$query = $this->db->get("tbl_truck");
+		
+		if($query->result()):
+			return false;
+		endif;
+		
+		$this->db->trans_start();
+		$this->db->insert("tbl_dr_num", array("DR_NUM" => $drNum));
+		$this->db->trans_complete();
+		
+		return $this->db->trans_status();
+	}
+	
+	function update() {
+		date_default_timezone_set('Asia/Manila');
+		
+		$truckNum = $this->input->post("truckNum");
+		$commodity = $this->input->post("commodity");
+		$origin = $this->input->post("startDest");
+		$destination = $this->input->post("endDest");
+		$soldTo = $this->input->post("soldTo");
+		$volume = $this->input->post("volume");
+		$driver = $this->input->post("driver");
+		$drNum = $this->input->post("drNum");
+		$remarks = $this->input->post("remarks");
+		
+		$this->db->trans_start();
+		$truck = array(
+			"TRUCK_NUM"	=> $truckNum,
+			"COMMODITY"	=> $commodity,
+			"DEST_FROM"	=> $origin,
+			"DEST_TO"		=> $destination,
+			"SOLD_TO"		=> $soldTo,
+			"VOLUME"			=> $volume,
+			"DRIVER"			=> $driver,
+			"REMARKS"		=> $remarks
+		);
+		$this->db->where("DR_NUM", $drNum);
+		$this->db->update("tbl_truck", $truck);
 		$this->db->trans_complete();
 		
 		return $this->db->trans_status();

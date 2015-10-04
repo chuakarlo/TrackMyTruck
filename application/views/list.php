@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title><?php echo $title; ?></title>
+		<title><?= $title ?></title>
 		<!-- Bootstrap -->
 		<?php
 			echo link_tag('css/bootstrap.min.css');
@@ -41,8 +41,13 @@
 						  <span class="icon-bar"></span>
 						  <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span>Track My Truck</a>
-				</div>
+					<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span><?= $title ?></a>
+				</div>					
+				<div class="collapse navbar-collapse navbar-right">
+					<ul class="nav navbar-nav">
+						<li><a href="#" onclick="$('#drNumModal').modal('show');"><span class="glyphicon glyphicon-cog"></span></a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
 			</div>
 		</div>
 
@@ -70,7 +75,7 @@
 						<tr>
 							<th id="lbl-search-truckNum" class="success text-center col-md-3">Truck Plate No</th>
 							<td>
-								<input id="search-truckNum" tabindex="1" name="search-truckNum" class="form-control input-sm" title="Truck Plate No." type="text" maxlength="10" size="60" />
+								<input id="search-truckNum" tabindex="1" name="search-truckNum" class="form-control input-sm" title="Truck Plate No." type="text" maxlength="10" size="60" value="<?= $truckNum ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -78,32 +83,32 @@
 							<td>
 								<select id="search-commodity" tabindex="2" name="search-commodity" class="form-control input-sm" title="Load / Commodity">
 									<option value="">Select</option>
-									<option value="Sand and Gravel (Processed)">Sand and Gravel (Processed)</option>
-									<option value="Sand and Gravel (Unprocessed)">Sand and Gravel (Unprocessed)</option>
-									<option value="Dolamite">Dolamite</option>
-									<option value="Guano">Guano</option>
-									<option value="Limestone">Limestone</option>
-									<option value="Phosphate">Phosphate</option>
-									<option value="Silica">Silica</option>
+									<option <?php echo $commodity == "Sand and Gravel (Processed)" ? "selected" : "" ?> value="Sand and Gravel (Processed)">Sand and Gravel (Processed)</option>
+									<option <?php echo $commodity == "Sand and Gravel (Unprocessed)" ? "selected" : "" ?> value="Sand and Gravel (Unprocessed)">Sand and Gravel (Unprocessed)</option>
+									<option <?php echo $commodity == "Dolamite" ? "selected" : "" ?> value="Dolamite">Dolamite</option>
+									<option <?php echo $commodity == "Guano" ? "selected" : "" ?>  value="Guano">Guano</option>
+									<option <?php echo $commodity == "Limestone" ? "selected" : "" ?>  value="Limestone">Limestone</option>
+									<option <?php echo $commodity == "Phosphate" ? "selected" : "" ?>  value="Phosphate">Phosphate</option>
+									<option <?php echo $commodity == "Silica" ? "selected" : "" ?>  value="Silica">Silica</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<th id="lbl-search-soldTo" class="success text-center">Sold To</th>
 							<td>
-								<input id="search-soldTo" tabindex="3" name="search-soldTo" class="form-control input-sm" title="Sold To" type="text" size="60" />
+								<input id="search-soldTo" tabindex="3" name="search-soldTo" class="form-control input-sm" title="Sold To" type="text" size="60" value="<?= $soldTo ?>" />
 							</td>
 						</tr>
 						<tr>
 							<th id="lbl-search-driver" class="success text-center">Driver</th>
 							<td>
-								<input id="search-driver" tabindex="4" name="search-driver" class="form-control input-sm" title="Driver" type="text" size="60" />
+								<input id="search-driver" tabindex="4" name="search-driver" class="form-control input-sm" title="Driver" type="text" size="60" value="<?= $driver ?>" />
 							</td>
 						</tr>
 						<tr>
 							<th id="lbl-search-drNum" class="success text-center">DR No.</th>
 							<td>
-								<input id="search-drNum" tabindex="5" name="search-drNum" class="form-control input-sm" title="DR No." type="text" size="60" />
+								<input id="search-drNum" tabindex="5" name="search-drNum" class="form-control input-sm" title="DR No." type="text" size="60" value="<?= $drNum ?>" />
 							</td>
 						</tr>
 					</table>
@@ -175,7 +180,7 @@
 								<td><?= $data->DRIVER; ?></td>
 								<td><?= $data->REMARKS; ?></td>
 								<td><a href="<?php echo base_url(); ?>index.php/truck/edit/<?= $data->DR_NUM; ?>">Edit</td>
-								<td><a onclick="confirmDelete(<?= $data->DR_NUM; ?>);">Delete</td>
+								<td><a href="#" onclick="confirmDelete(<?= $data->DR_NUM; ?>);">Delete</td>
 							</tr>     
 						<?php 
 							endforeach;
@@ -195,6 +200,40 @@
 			</div>
 
 		</div><!-- container -->
+		
+		<div class="modal fade" id="drNumModal" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">Delivery Receipt Number</h4>
+					</div>
+					<div class="modal-body">
+						<?php echo form_open('index.php/truck/edit_DR', array('class' => 'form-inline', 'id' => 'updateForm', 'name' => 'updateForm')); ?>
+							<div class="row">
+								<div class="col-md-12">
+									<table class="table table-bordered table-striped table-hover">
+										<tr>
+											<th id="lbl-drNum" class="success text-center col-md-3">DR No</th>
+											<td>
+												<div class="form-group" id="drNumDiv">
+													<input id="drNum" name="drNum" class="form-control input-sm" title="DR No" type="text" maxlength="10" size="60" />
+													<span id="drNumSpan" class="hidden glyphicon glyphicon-remove form-control-feedback" aria-hidden='true'></span>
+												</div>
+												<small class="text-muted" id="drNumSmall"></small>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary submit-button" onclick="handleUpdate();">Update</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="container">
 			<div class="row">
@@ -209,6 +248,46 @@
 				if (confirm("Are you sure you want to delete DR Number " + drNum + "?")) {
 					window.location.href = "<?php echo base_url(); ?>index.php/truck/delete/"+drNum;
 				}
+			}
+			
+			function handleUpdate() {
+				var drNum = document.updateForm.drNum.value;
+				
+				$(".submit-button").addClass("disabled");
+				$.ajax({
+					url: "<?php echo base_url(); ?>index.php/truck/edit_DR/"+drNum,
+					type: "POST",
+					data: {
+						'drNum' : drNum
+					},
+					success: function(data) {
+						console.log(data);
+						
+						if (data == "false") {
+							$("#drNumDiv").addClass("has-error has-feedback");
+							$("#drNum").val(drNum);
+							$("#drNumSpan").removeClass("hidden");
+							if (drNum == "") {
+								$("#drNumSmall").text("The DR No field is required.");
+							} else {
+								$("#drNumSmall").text("The DR No field must contain only numbers.");
+							}
+						} else if (data == "exist") {
+							$("#drNumDiv").addClass("has-error has-feedback");
+							$("#drNum").val(drNum);
+							$("#drNumSpan").removeClass("hidden");
+							$("#drNumSmall").text("The DR No entered already exists in database.");
+						} else if (data == "true") {
+							alert("Successfully updated Delivery Receipt Number");
+							$("#drNum").val("");
+							$("#drNumDiv").removeClass("has-error has-feedback");
+							$("#drNumSpan").addClass("hidden");
+							$('#drNumModal').modal('hide');
+						}
+						
+						$(".submit-button").removeClass("disabled");
+					}
+				});
 			}
 		</script>
 	</body>
