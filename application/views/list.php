@@ -63,7 +63,7 @@
 				</div><!-- col-md-4 -->
 			</div><!-- class="row" -->
 
-		<?php echo form_open('index.php/trucklist/create', array('class' => 'form-inline', 'id' => 'searchForm')); ?>
+		<?php echo form_open('index.php/truck/search', array('class' => 'form-inline', 'id' => 'searchForm')); ?>
 			<div class="row">
 				<div class="col-md-12">
 					<table class="table table-bordered table-hover table-striped">
@@ -78,13 +78,13 @@
 							<td>
 								<select id="search-commodity" tabindex="2" name="search-commodity" class="form-control input-sm" title="Load / Commodity">
 									<option value="">Select</option>
-									<option>Sand and Gravel (Processed)</option>
-									<option>Sand and Gravel (Unprocessed)</option>
-									<option>Dolamite</option>
-									<option>Guano</option>
-									<option>Limestone</option>
-									<option>Phosphate</option>
-									<option>Silica</option>
+									<option value="Sand and Gravel (Processed)">Sand and Gravel (Processed)</option>
+									<option value="Sand and Gravel (Unprocessed)">Sand and Gravel (Unprocessed)</option>
+									<option value="Dolamite">Dolamite</option>
+									<option value="Guano">Guano</option>
+									<option value="Limestone">Limestone</option>
+									<option value="Phosphate">Phosphate</option>
+									<option value="Silica">Silica</option>
 								</select>
 							</td>
 						</tr>
@@ -110,164 +110,72 @@
 
 					<div class="row">
 						<div class="col-md-12 text-right">
-							<button id="btn-search" type="button" class="btn btn-primary" tabindex="6" name="search" onclick="displaySearchDetails();">Search</button>
+							<input type="submit" id="btn-search" type="button" class="btn btn-primary" tabindex="6" name="search" value="Search" />
 							<a id="btn-register" class="btn btn-primary" tabindex="7" name="register" href="<?php echo base_url(); ?>index.php/register">New Entry</a>
 						</div><!-- col-md-4 -->
 					</div><!-- class="row" -->
 				</div>
 			</div><!-- class="row" -->
 		</form>
-
+			
 			<div class="row">
-				<div class="col-md-12 searchDetails hidden text-center">
-					 <ul class="pagination">
-					  <li id="lbl-page-1_1" class="active" tabindex="10"><a>1</a></li>
-					  <li id="lbl-page-2_1"><a href="#">2</a></li>
-					  <li id="lbl-page-3_1"><a href="#">3</a></li>
-					  <li id="lbl-page-4_1"><a href="#">4</a></li>
-					  <li id="lbl-page-..._1"><a href="#">...</a></li>
-					  <li id="lbl-page-32_1"><a href="#">32</a></li>
-					  <li id="lbl-page-33_1"><a href="#">33</a></li>
-					  <li id="lbl-page-Next_1"><a href="#">Next</a></li>
-					 </ul>
-				</div><!-- col-md-12 -->
-			</div><!-- class="row" -->
-
-			<div class="row searchDetails hidden">
-				<div class="col-md-12 form-inline">
+				<div class="col-md-12 text-center">
+					<?php echo $this->pagination->create_links(); ?>
+				</div>
+			</div>
+			
+			<?php
+				if(is_array($truckData) && count($truckData) ) {
+			?>
+			<div class="row">
+				<div class="col-md-12 form-inline" style="margin-top:20px">
 					<table class="table table-bordered table-striped table-hover">
 						<thead>
 							<tr class="success">
 								<th id="lbl-drNum" class="text-center">DR No</th>
-								<th id="lbl-truckNum" class="text-center">Truck No / Plate No</th>
+								<th id="lbl-truckNum" class="text-center">Truck Plate No</th>
 								<th id="lbl-commodity" class="text-center">Load/Commodity</th>
 								<th id="lbl-destination" class="text-center">Destination</th>
 								<th id="lbl-soldTo" class="text-center">Sold to</th>
 								<th id="lbl-volume" class="text-center">Volume</th>
 								<th id="lbl-driver" class="text-center">Driver</th>
 								<th id="lbl-remarks" class="text-center">Remarks</th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
-							<tr  class="text-center">
-								<td id="itemNum_1">123456</td>
-								<td id="edit_1">GPR 675</td>
-								<td id="delete_1">Washed Sands</td>
-								<td id="stockCode_1">Cebu City</td>
-								<td id="custCode_1">John Doe</td>
-								<td id="startDate_1">300 m<sup>3</sup></td>
-								<td id="endDate_1">John Doe</td>
-								<td id="lendingRate_1">Delivered</td>
-							</tr>
+						<?php
+							foreach($truckData as $data) {
+						?>
+							<tr class="text-center">
+								<td><?= $data->DR_NUM; ?></td>
+								<td><?= $data->TRUCK_NUM; ?></td>
+								<td><?= $data->COMMODITY; ?></td>
+								<td><?= $data->DEST_FROM; ?></td>
+								<td><?= $data->SOLD_TO; ?></td>
+								<td><?= $data->VOLUME; ?></td>
+								<td><?= $data->DRIVER; ?></td>
+								<td><?= $data->REMARKS; ?></td>
+								<td><a href="<?php echo base_url(); ?>index.php/truck/edit/<?= $data->DR_NUM; ?>">Edit</td>
+								<td><a onclick="confirmDelete(<?= $data->DR_NUM; ?>);">Delete</td>
+							</tr>     
+						<?php 
+								}
+						?> 
 						</tbody>
 					</table>
 				</div><!-- col-md-12 -->
 			</div><!-- class="row" -->
+			<?php
+				}
+			?>
 	
 			<div class="row">
-				<div class="col-md-12 text-center searchDetails hidden">
-					 <ul class="pagination">
-					  <li id="lbl-page-1_2" class="active" tabindex="10"><a>1</a></li>
-					  <li id="lbl-page-2_2"><a href="#">2</a></li>
-					  <li id="lbl-page-3_2"><a href="#">3</a></li>
-					  <li id="lbl-page-4_2"><a href="#">4</a></li>
-					  <li id="lbl-page-..._2"><a href="#">...</a></li>
-					  <li id="lbl-page-32_2"><a href="#">32</a></li>
-					  <li id="lbl-page-33_2"><a href="#">33</a></li>
-					  <li id="lbl-page-Next_2"><a href="#">Next</a></li>
-					 </ul>
-				</div><!-- col-md-12 -->
-			</div><!-- class="row" -->
+				<div class="col-md-12 text-center">
+					<?php echo $this->pagination->create_links(); ?>
+				</div>
+			</div>
 
 		</div><!-- container -->
 
@@ -280,8 +188,10 @@
 			</div>
 		</div>
 		<script>
-			function displaySearchDetails(){
-				$(".searchDetails").removeClass('hidden');
+			function confirmDelete(drNum) {
+				if (confirm("Are you sure you want to delete DR Number " + drNum + "?")) {
+					window.location.href = "<?php echo base_url(); ?>index.php/truck/delete/"+drNum;
+				}
 			}
 		</script>
 	</body>
